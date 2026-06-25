@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ROYAL SUBEDI - Digital Innovation Experts</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght=300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #0a192f;
+            --bg-darker: #020c1b;
+            --bg-gradient: linear-gradient(135deg, #091a36 0%, #030d1e 100%);
+            --orange-gradient: linear-gradient(90deg, #ff6b00 0%, #ff3d00 100%);
+            --accent-orange: #ff5500;
+            --text-light: #f8fafc;
+            --text-muted: #94a3b8;
+            --text-dark: #1e293b;
+            --card-bg: #ffffff;
+            --section-bg-light: #f8fafc;
+            --border-color: #e2e8f0;
+            --radius-lg: 16px;
+            --radius-md: 12px;
+            --radius-sm: 8px;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background-color: var(--section-bg-light);
+            color: var(--text-dark);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        .dot-pattern {
+            background-image: radial-gradient(#e2e8f0 1.5px, transparent 1.5px);
+            background-size: 24px 24px;
+        }
+
+        /* --- HEADER & NAVBAR --- */
+        header {
+            background-color: rgba(255, 255, 255, 0.96);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 4px 25px rgba(0,0,0,0.04);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        /* HARD-FIXED LOGO CONFIGURATION (No distortion, complete visibility) */
+        .brand-logo-wrapper {
+            width: 46px;
+            height: 46px;
+            border-radius: 50%;
+            background: #000000;
+            padding: 2px;
+            border: 2px solid #52b788;
+            box-shadow: 0 0 15px rgba(82, 183, 136, 0.4);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .brand-logo {
+            width: 100%;
+            height: 100%;
+            object-fit: contain; /* Assures the full 2026 crest design is fully contained without truncation */
+            border-radius: 50%;
+        }
+
+        .logo-text {
+            color: #0f172a;
+            font-size: 19px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        .menu-box-btn {
+            background-color: #eff6ff;
+            color: #2563eb;
+            border: 1px solid #bfdbfe;
+            padding: 8px 14px;
+            border-radius: var(--radius-sm);
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: var(--transition);
+        }
+
+        /* --- SIDE DRAWER MENU --- */
+        .nav-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 100%;
+            height: 100vh;
+            background-color: #ffffff;
+            z-index: 2000;
+            transition: 0.4s cubic-bezier(0.77,0,0.175,1);
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .nav-menu.active {
+            right: 0;
+        }
+
+        .menu-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 35px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 15px;
+        }
+
+        .close-icon {
+            font-size: 24px;
+            color: var(--text-dark);
+            cursor: pointer;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #f1f5f9;
+            border-radius: 50%;
+        }
+
+        .menu-items {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .menu-link {
+            display: block;
+            padding: 14px 20px;
+            color: var(--text-dark);
+            text-decoration: none;
+            font-size: 17px;
+            font-weight: 600;
+            border-radius: var(--radius-sm);
+        }
+
+        .menu-btn {
+            margin-top: 25px;
+            background: var(--orange-gradient);
+            color: white;
+            text-align: center;
+            padding: 16px;
+            border-radius: var(--radius-sm);
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        /* --- HERO --- */
+        .hero {
+            background: var(--bg-gradient);
+            padding: 150px 24px 70px 24px;
+            text-align: center;
+            color: var(--text-light);
+        }
+
+        .badge {
+            background: rgba(255, 107, 0, 0.12);
+            border: 1px solid rgba(255, 107, 0, 0.3);
+            color: #ff9e57;
+            padding: 6px 16px;
+            border-radius: 30px;
+            font-size: 12px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            margin-bottom: 24px;
+            font-weight: 600;
+        }
+
+        .hero h1 {
+            font-size: 38px;
+            font-weight: 700;
+            line-height: 1.25;
+            margin-bottom: 18px;
+        }
+
+        .hero h1 span {
+            color: #ff763b;
+        }
+
+        .hero p {
+            font-size: 15px;
+            opacity: 0.85;
+            margin-bottom: 35px;
+        }
+
+        .hero-btn-container {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            max-width: 480px;
+            margin: 0 auto;
+        }
+
+        .hero-btn {
+            flex: 1;
+            padding: 14px 12px;
+            border-radius: var(--radius-sm);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 13.5px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+
+        .hero-btn.primary {
+            background: var(--orange-gradient);
+            color: var(--text-light);
+        }
+
+        .hero-btn.secondary {
+            background-color: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+        }
+
+        /* --- STATS --- */
+        .stats-section {
+            background-color: #ffffff;
+            padding: 45px 24px;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px 20px;
+            text-align: center;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .stat-box h2 {
+            font-size: 36px;
+            color: var(--accent-orange);
+            font-weight: 700;
+        }
+
+        .stat-box p {
+            font-size: 13px;
+            color: #64748b;
+            font-weight: 600;
+        }
+
+        /* --- SECTION HEADING --- */
+        .section-header {
+            text-align: center;
+            padding: 60px 24px 25px 24px;
+        }
+
+        .section-header h2 {
+            font-size: 28px;
+            font-weight: 700;
+            color: #0f172a;
+        }
+
+        .section-header h2 span {
+            color: var(--accent-orange);
+        }
+
+        /* --- CARDS CONTAINER --- */
+        .cards-container {
+            padding: 0 20px 40px 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            padding: 28px 24px;
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border-color);
+        }
+
+        .card.featured {
+            border: 2px solid var(--accent-orange);
+            background: linear-gradient(180deg, #ffffff 0%, #fffbf9 100%);
+        }
+
+        .icon-box {
+            width: 52px;
+            height: 52px;
+            border-radius: var(--radius-md);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 22px;
+            margin-bottom: 18px;
+            color: white;
+        }
+
+        .icon-box.c1 { background: linear-gradient(135deg, #3b82f6, #1d4ed8); }
+        .icon-box.c2 { background: linear-gradient(135deg, #10b981, #047857); }
+        .icon-box.c3 { background: linear-gradient(135deg, #f59e0b, #d97706); }
+        .icon-box.c4 { background: linear-gradient(135deg, #8b5cf6, #6d28d9); }
+        .icon-box.c5 { background: linear-gradient(135deg, #ec4899, #be185d); }
+        .icon-box.c6 { background: linear-gradient(135deg, #06b6d4, #0891b2); }
+
+        .card h3 {
+            font-size: 18px;
+            color: #0f172a;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .card p {
+            font-size: 13.5px;
+            color: #475569;
+            margin-bottom: 16px;
+        }
+
+        .card .learn-more {
+            color: var(--accent-orange);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 13.5px;
+        }
+
+        /* --- PORTFOLIO SHOWCASE --- */
+        .portfolio-grid {
+            padding: 0 20px 40px 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 22px;
+        }
+
+        .portfolio-card {
+            background: white;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+        }
+
+        .portfolio-thumb {
+            width: 100%;
+            height: 190px;
+            background: linear-gradient(45deg, #0f172a, #1e293b);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255,255,255,0.8);
+            font-weight: 600;
+        }
+
+        .portfolio-body {
+            padding: 20px;
+        }
+
+        .portfolio-tag {
+            background: rgba(255,107,0,0.08);
+            color: var(--accent-orange);
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 8px;
+        }
+
+        /* --- TESTIMONIALS --- */
+        .testimonial-card {
+            background: white;
+            padding: 26px;
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border-color);
+        }
+
+        .stars {
+            color: #f59e0b;
+            font-size: 15px;
+            margin-bottom: 12px;
+        }
+
+        .client-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-top: 18px;
+        }
+
+        .client-img {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: #cbd5e1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            color: #1e293b;
+        }
+
+        .center-btn-wrapper {
+            text-align: center;
+            padding: 0 20px 40px 20px;
+        }
+
+        .dark-btn {
+            background-color: #0a192f;
+            color: white;
+            padding: 14px 28px;
+            border-radius: var(--radius-sm);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        /* --- CTA --- */
+        .cta-section {
+            background: var(--orange-gradient);
+            padding: 55px 24px;
+            text-align: center;
+            color: white;
+        }
+
+        .cta-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            max-width: 320px;
+            margin: 0 auto;
+        }
+
+        .white-btn {
+            background-color: #ffffff;
+            color: #ff4500;
+            padding: 14px;
+            border-radius: var(--radius-sm);
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        .outline-btn {
+            background-color: transparent;
+            border: 2px solid #ffffff;
+            color: #ffffff;
+            padding: 12px;
+            border-radius: var(--radius-sm);
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        footer {
+            background-color: #010814;
+            color: #64748b;
+            padding: 40px 24px 115px 24px;
+            font-size: 13px;
+            text-align: center;
+        }
+
+        /* --- PERSISTENT SERVER/PREVIEW BANNER --- */
+        .preview-banner {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: #1e293b;
+            color: white;
+            padding: 15px 20px;
+            z-index: 999;
+            box-shadow: 0 -4px 25px rgba(0,0,0,0.18);
+            font-size: 13px;
+            transition: background-color 0.4s ease;
+        }
+
+        .preview-flex {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .server-btn {
+            width: 100%;
+            background-color: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.15);
+            color: #38bdf8;
+            padding: 12px;
+            border-radius: var(--radius-sm);
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .spinner {
+            width: 16px;
+            height: 16px;
+            border: 2px solid transparent;
+            border-top-color: currentColor;
+            border-radius: 50%;
+            display: none;
+            animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body class="dot-pattern">
+
+    <header>
+        <div class="logo-container">
+            <div class="brand-logo-wrapper">
+                <img src="1000055919.jpg" alt="ROYAL SUBEDI Metallic Emblem" class="brand-logo">
+            </div>
+            <div class="logo-text">ROYAL SUBEDI</div>
+        </div>
+        <div class="menu-box-btn" id="openMenu">
+            <span>☰</span> Menu
+        </div>
+    </header>
+
+    <div class="nav-menu" id="sideMenu">
+        <div class="menu-header">
+            <div class="logo-container">
+                <div class="brand-logo-wrapper">
+                    <img src="1000055919.jpg" alt="ROYAL SUBEDI Logo" class="brand-logo">
+                </div>
+                <div class="logo-text">ROYAL SUBEDI</div>
+            </div>
+            <div class="close-icon" id="closeMenu">✕</div>
+        </div>
+        <div class="menu-items">
+            <a href="#" class="menu-link">Home</a>
+            <a href="#" class="menu-link">Services</a>
+            <a href="#" class="menu-link">Portfolio</a>
+            <a href="#" class="menu-link">Testimonials</a>
+            <a href="#" class="menu-link">Contact</a>
+            <a href="tel:9766113379" class="menu-btn">📞 Call Engineering Desk</a>
+        </div>
+    </div>
+
+    <section class="hero">
+        <div class="badge">Digital Innovation Experts 🇳🇵</div>
+        <h1>Build Your Digital<br><span>Future Today</span></h1>
+        <p>We transform complex visions into powerful, conversion-driven digital products. Specializing in high-performance cloud web systems and native apps.</p>
+        
+        <div class="hero-btn-container">
+            <div class="hero-btn primary" id="heroReviewBtn">Review System</div>
+            <div class="hero-btn secondary" id="heroExploreBtn">Explore Services</div>
+        </div>
+    </section>
+
+    <section class="stats-section">
+        <div class="stat-box">
+            <h2>150+</h2>
+            <p>Projects Completed</p>
+        </div>
+        <div class="stat-box">
+            <h2>120+</h2>
+            <p>Happy Clients</p>
+        </div>
+        <div class="stat-box">
+            <h2>4+</h2>
+            <p>Years Experience</p>
+        </div>
+        <div class="stat-box">
+            <h2>15+</h2>
+            <p>Team Members</p>
+        </div>
+    </section>
+
+    <section class="section-header">
+        <h2>Why Choose <span>ROYAL SUBEDI</span>?</h2>
+    </section>
+
+    <div class="cards-container">
+        <div class="card">
+            <div class="icon-box c1">⚡</div>
+            <h3>Lightning Fast Delivery</h3>
+            <p>High-velocity development cycles governed by automated continuous deployment frameworks.</p>
+            <span class="learn-more" style="cursor:pointer;">Learn More &rarr;</span>
+        </div>
+        <div class="card">
+            <div class="icon-box c2">👥</div>
+            <h3>Client-Centric Approach</h3>
+            <p>Radical milestones engineering transparency keeps you looping through technical layers completely stress-free.</p>
+            <span class="learn-more" style="cursor:pointer;">Learn More &rarr;</span>
+        </div>
+        <div class="card">
+            <div class="icon-box c3">🏅</div>
+            <h3>Award-Winning UX Standards</h3>
+            <p>Intricate corporate operational workflows mapped into beautiful, lightweight interfaces built to acquire transactions.</p>
+            <span class="learn-more" style="cursor:pointer;">Learn More &rarr;</span>
+        </div>
+    </div>
+
+    <section class="section-header">
+        <h2>Our Engineered <span>Services</span></h2>
+    </section>
+
+    <div class="cards-container">
+        <div class="card">
+            <div class="icon-box c1">💻</div>
+            <h3>Website Development</h3>
+            <p>Tailored, interactive web architecture mapped to maximum SEO authority, high loading velocities, and screen adaptivity.</p>
+            <span class="learn-more" style="cursor:pointer;">Learn More &rarr;</span>
+        </div>
+        <div class="card featured">
+            <div class="icon-box c3">⭐️</div>
+            <h3>Review Management System</h3>
+            <p>Automated cloud engines built to capture, structure, and stream social proof vectors that elevate conversions instantly.</p>
+            <span class="learn-more" style="cursor:pointer;">Learn More &rarr;</span>
+        </div>
+    </div>
+
+    <section class="section-header">
+        <h2>Our Case <span>Studies</span></h2>
+    </section>
+
+    <div class="portfolio-grid">
+        <div class="portfolio-card">
+            <div class="portfolio-thumb">[ Live Production Server Preview Hub ]</div>
+            <div class="portfolio-body">
+                <span class="portfolio-tag">Next.js Core Integration</span>
+                <h4>Dynamic Enterprise Portal</h4>
+            </div>
+        </div>
+    </div>
+
+    <section class="section-header">
+        <h2>Validated <span>Reputation</span></h2>
+    </section>
+
+    <div class="cards-container">
+        <div class="testimonial-card">
+            <div class="stars">★★★★★</div>
+            <p>"Royal Subedi deployed our nationwide cloud infrastructure completely ahead of scheduled milestone parameters."</p>
+            <div class="client-info">
+                <div class="client-img">RS</div>
+                <div class="client-meta">
+                    <h5>Rajesh Shrestha</h5>
+                    <span>Managing Director, Nepal Trade Logistics</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br><br>
+
+    <section class="cta-section">
+        <h2>Ready to Dominate Your Industry?</h2>
+        <div class="cta-buttons">
+            <div class="white-btn" style="cursor:pointer;">Request Strategy Session</div>
+            <a href="tel:9766113379" class="outline-btn">Call 976-6113379</a>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 ROYAL SUBEDI. All Engineering Rights Reserved.</p>
+    </footer>
+
+    <div class="preview-banner" id="serverBanner">
+        <div class="preview-flex">
+            <div class="preview-text" id="statusMessage">Frontend Preview Only. Please wake the database servers to route forms.</div>
+            <button class="server-btn" id="wakeServerBtn">
+                <div class="spinner" id="serverSpinner"></div>
+                <span id="serverBtnText">Wake up servers</span>
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // All Drawer Functions open immediately
+        const openMenuBtn = document.getElementById('openMenu');
+        const closeMenuBtn = document.getElementById('closeMenu');
+        const sideMenu = document.getElementById('sideMenu');
+
+        openMenuBtn.addEventListener('click', () => sideMenu.classList.add('active'));
+        closeMenuBtn.addEventListener('click', () => sideMenu.classList.remove('active'));
+
+        // Core Actions are fully interactive right now
+        document.getElementById('heroReviewBtn').addEventListener('click', () => {
+            alert('Review Management System configuration facility is ready and active!');
+        });
+        document.getElementById('heroExploreBtn').addEventListener('click', () => {
+            window.scrollTo({ top: 600, behavior: 'smooth' });
+        });
+
+        // Server Simulation Control
+        const wakeServerBtn = document.getElementById('wakeServerBtn');
+        const serverSpinner = document.getElementById('serverSpinner');
+        const serverBtnText = document.getElementById('serverBtnText');
+        const statusMessage = document.getElementById('statusMessage');
+        const serverBanner = document.getElementById('serverBanner');
+
+        wakeServerBtn.addEventListener('click', () => {
+            serverSpinner.style.display = 'block';
+            serverBtnText.innerText = 'Spinning up Servers...';
+            statusMessage.innerText = 'Routing database components to secure cloud cluster...';
+
+            setTimeout(() => {
+                serverBanner.style.backgroundColor = '#22c55e';
+                wakeServerBtn.style.display = 'none';
+                statusMessage.style.textAlign = 'center';
+                statusMessage.style.fontWeight = '700';
+                statusMessage.style.fontSize = '15px';
+                statusMessage.innerHTML = '✔ Server is wake up!';
+            }, 1800);
+        });
+    </script>
+</body>
+</html>
